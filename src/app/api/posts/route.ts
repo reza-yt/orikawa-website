@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPosts, createPost } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
-  const posts = getPosts();
+  const posts = await getPosts();
   return NextResponse.json(posts);
 }
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-  const post = createPost(data);
+  const post = await createPost(data);
   return NextResponse.json(post, { status: 201 });
 }

@@ -131,7 +131,7 @@ export default function AdminLayout({
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-surface-1 border-r border-black/[0.06] flex flex-col transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
         {/* Logo */}
         <div className="h-16 flex items-center px-6 border-b border-black/[0.06]">
-          <Link href="/admin/dashboard">
+          <Link href="/">
             <span className="font-heading font-bold text-lg">
               ORI<span className="text-accent">KAWA</span>
             </span>
