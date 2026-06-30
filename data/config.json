@@ -1,0 +1,13 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "orikawa2024"
+  },
+  "site": {
+    "name": "Orikawa Indonesia",
+    "description": "Specialist Scaling Chiller & Chemical Cleaning",
+    "whatsapp": "6281234567890",
+    "email": "info@orikawa.id",
+    "address": "Jakarta, Indonesia"
+  }
+}
