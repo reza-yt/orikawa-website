@@ -12,36 +12,55 @@ export default function ProjectsPage() {
 
   return (
     <div>
-      <section className="bg-gradient-to-r from-purple-900 to-purple-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Project Kami</h1>
-          <p className="text-xl text-purple-100">Portofolio project scaling chiller dan chemical cleaning</p>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }} />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <p className="reveal text-accent text-xs tracking-[0.2em] uppercase font-medium mb-3">Project</p>
+          <h1 className="reveal font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+            Portofolio{" "}
+            <span className="text-text-secondary font-light">Kami</span>
+          </h1>
+          <p className="reveal text-text-secondary text-lg max-w-2xl">
+            Project scaling chiller dan chemical cleaning yang telah kami kerjakan.
+          </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
+      {/* Projects list */}
+      <section className="pb-24 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {projects.length === 0 ? (
-            <p className="text-center text-gray-500">Project akan segera ditampilkan</p>
+            <div className="text-center py-20">
+              <p className="text-text-secondary">Project akan segera ditampilkan</p>
+            </div>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-6 stagger-children">
               {projects.map((project) => (
-                <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div key={project.id} className="reveal rounded-2xl border border-white/[0.06] bg-surface-1 overflow-hidden hover:border-white/[0.12] transition-colors">
                   {project.images?.length > 0 && (
-                    <div className="flex overflow-x-auto gap-2 p-4 bg-gray-50">
+                    <div className="flex overflow-x-auto gap-3 p-4 bg-surface-2 scrollbar-hide">
                       {project.images.map((img: string, i: number) => (
-                        <img key={i} src={img} alt="" className="h-48 rounded object-cover" />
+                        <img
+                          key={i}
+                          src={img}
+                          alt=""
+                          className="h-48 rounded-xl object-cover flex-shrink-0"
+                        />
                       ))}
                     </div>
                   )}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-3">
-                      {project.client && <span>Klien: {project.client}</span>}
-                      {project.location && <span>Lokasi: {project.location}</span>}
-                      {project.date && <span>Tanggal: {project.date}</span>}
+                  <div className="p-8">
+                    <h3 className="font-heading text-2xl font-bold mb-3">{project.title}</h3>
+                    <div className="flex flex-wrap gap-4 text-sm text-text-muted mb-4">
+                      {project.client && <span className="flex items-center gap-1.5"><span className="text-accent">→</span> {project.client}</span>}
+                      {project.location && <span className="flex items-center gap-1.5"><span className="text-accent">→</span> {project.location}</span>}
+                      {project.date && <span className="flex items-center gap-1.5"><span className="text-accent">→</span> {project.date}</span>}
                     </div>
-                    <p className="text-gray-600">{project.description}</p>
+                    <p className="text-text-secondary leading-relaxed">{project.description}</p>
                   </div>
                 </div>
               ))}
@@ -50,11 +69,16 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ingin Project Seperti Ini?</h2>
-          <p className="text-gray-600 mb-6">Hubungi kami untuk konsultasi dan penawaran</p>
-          <Link href="/contact" className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 inline-block">
+      {/* CTA */}
+      <section className="py-20 bg-surface-1 border-y border-white/[0.06]">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="reveal font-heading text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            Ingin Project Seperti Ini?
+          </h2>
+          <p className="reveal text-text-secondary mb-8">
+            Hubungi kami untuk konsultasi dan penawaran
+          </p>
+          <Link href="/contact" className="reveal btn-primary inline-block">
             Hubungi Kami
           </Link>
         </div>

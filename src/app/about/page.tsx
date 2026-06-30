@@ -1,74 +1,81 @@
 export default function AboutPage() {
   return (
     <div>
-      <section className="bg-gradient-to-r from-gray-900 to-gray-700 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">Tentang Orikawa Indonesia</h1>
-          <p className="text-xl text-gray-300">Specialist Scaling Chiller & Chemical Cleaning</p>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }} />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          <p className="reveal text-accent text-xs tracking-[0.2em] uppercase font-medium mb-3">Tentang Kami</p>
+          <h1 className="reveal font-heading text-4xl md:text-6xl font-bold tracking-tight mb-4">
+            Orikawa <span className="text-text-secondary font-light">Indonesia</span>
+          </h1>
+          <p className="reveal text-text-secondary text-lg max-w-2xl">
+            Specialist scaling chiller & chemical cleaning untuk sistem HVAC industri.
+          </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      {/* Story */}
+      <section className="py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Siapa Kami?</h2>
-              <p className="text-gray-600 mb-4">
-                Orikawa Indonesia adalah perusahaan yang bergerak di bidang jasa pembersihan dan perawatan sistem HVAC (Heating, Ventilation, and Air Conditioning). Kami spesialis dalam scaling chiller, cleaning cooling tower, dan chemical cleaning untuk berbagai kebutuhan industri.
-              </p>
-              <p className="text-gray-600 mb-4">
-                Dengan pengalaman bertahun-tahun, kami telah menangani berbagai project di gedung perkantoran, pabrik, rumah sakit, hotel, dan fasilitas industri lainnya.
-              </p>
-              <p className="text-gray-600">
-                Kami juga menyediakan berbagai produk chemical berkualitas tinggi untuk kebutuhan pembersihan kerak, karat, dan kotoran pada sistem pendingin dan pipa industri.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Keunggulan Kami</h2>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <div>
-                    <h3 className="font-semibold">Tim Berpengalaman</h3>
-                    <p className="text-gray-600 text-sm">Teknisi terlatih dan bersertifikat dengan pengalaman puluhan tahun</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <div>
-                    <h3 className="font-semibold">Chemical Premium</h3>
-                    <p className="text-gray-600 text-sm">Menggunakan bahan kimia import berkualitas tinggi dan aman</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <div>
-                    <h3 className="font-semibold">Peralatan Modern</h3>
-                    <p className="text-gray-600 text-sm">Dilengkapi peralatan cleaning terbaru dan terkalibrasi</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <span className="text-green-500 text-xl">✓</span>
-                  <div>
-                    <h3 className="font-semibold">Harga Kompetitif</h3>
-                    <p className="text-gray-600 text-sm">Penawaran harga terbaik dengan kualitas layanan prima</p>
-                  </div>
-                </div>
+              <h2 className="reveal font-heading text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                Siapa Kami?
+              </h2>
+              <div className="space-y-4 reveal text-text-secondary leading-relaxed">
+                <p>
+                  Orikawa Indonesia adalah perusahaan yang bergerak di bidang jasa pembersihan dan perawatan sistem HVAC. Kami spesialis dalam scaling chiller, cleaning cooling tower, dan chemical cleaning untuk berbagai kebutuhan industri.
+                </p>
+                <p>
+                  Dengan pengalaman bertahun-tahun, kami telah menangani berbagai project di gedung perkantoran, pabrik, rumah sakit, hotel, dan fasilitas industri lainnya.
+                </p>
+                <p>
+                  Kami juga menyediakan berbagai produk chemical berkualitas tinggi untuk kebutuhan pembersihan kerak, karat, dan kotoran pada sistem pendingin dan pipa industri.
+                </p>
               </div>
+            </div>
+
+            <div className="stagger-children space-y-4">
+              {[
+                { title: "Tim Berpengalaman", desc: "Teknisi terlatih dan bersertifikat dengan pengalaman puluhan tahun" },
+                { title: "Chemical Premium", desc: "Bahan kimia import berkualitas tinggi dan aman" },
+                { title: "Peralatan Modern", desc: "Dilengkapi peralatan cleaning terbaru dan terkalibrasi" },
+                { title: "Harga Kompetitif", desc: "Penawaran harga terbaik dengan kualitas layanan prima" },
+              ].map((item, i) => (
+                <div key={i} className="reveal flex gap-4 p-5 rounded-xl border border-white/[0.06] bg-surface-1 hover:border-white/[0.12] transition-colors group">
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <span className="text-accent font-heading font-bold text-sm">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold mb-1">{item.title}</h3>
+                    <p className="text-text-secondary text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-blue-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Mitra Terpercaya Anda</h2>
-          <p className="text-xl text-blue-100 mb-8">Melayani kebutuhan HVAC dan chemical cleaning di seluruh Indonesia</p>
+      {/* Stats */}
+      <section className="py-20 bg-surface-1 border-y border-white/[0.06]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div><p className="text-4xl font-bold">100+</p><p className="text-blue-200">Project Selesai</p></div>
-            <div><p className="text-4xl font-bold">50+</p><p className="text-blue-200">Klien Puas</p></div>
-            <div><p className="text-4xl font-bold">10+</p><p className="text-blue-200">Tahun Pengalaman</p></div>
-            <div><p className="text-4xl font-bold">24/7</p><p className="text-blue-200">Support</p></div>
+            {[
+              { value: "100+", label: "Project Selesai" },
+              { value: "50+", label: "Klien Puas" },
+              { value: "10+", label: "Tahun Pengalaman" },
+              { value: "24/7", label: "Support" },
+            ].map((stat, i) => (
+              <div key={i} className="reveal text-center">
+                <p className="font-heading text-4xl font-bold gradient-text mb-2">{stat.value}</p>
+                <p className="text-text-secondary text-sm">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
