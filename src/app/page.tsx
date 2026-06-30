@@ -1,42 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-
-function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = (e.clientY - rect.top) / rect.height;
-      const rotateX = (y - 0.5) * -8;
-      const rotateY = (x - 0.5) * 8;
-      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
-    };
-
-    const handleMouseLeave = () => {
-      el.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateZ(0)";
-    };
-
-    el.addEventListener("mousemove", handleMouseMove);
-    el.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      el.removeEventListener("mousemove", handleMouseMove);
-      el.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  return (
-    <div ref={ref} className={`tilt-card ${className}`} style={{ transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)" }}>
-      {children}
-    </div>
-  );
-}
 
 function FloatingOrb({ className }: { className: string }) {
   return (
@@ -92,14 +56,14 @@ export default function Home() {
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-20">
           <div className="max-w-4xl">
             {/* Badge */}
-            <div className="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.08] bg-surface-1/50 backdrop-blur-sm mb-8">
+            <div className="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/[0.08] bg-surface-1/50 backdrop-blur-sm mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow" />
               <span className="text-xs text-text-secondary tracking-wide">HVAC Specialist · Indonesia</span>
             </div>
@@ -130,32 +94,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Floating 3D card */}
-          <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2" style={{ perspective: "1200px" }}>
-            <div className="animate-float" style={{ transformStyle: "preserve-3d" }}>
-              <div className="w-72 h-80 rounded-2xl border border-white/[0.06] bg-surface-1/80 backdrop-blur-md p-6 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl" />
-                <div className="relative z-10">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 text-accent" stroke="currentColor" strokeWidth={1.5}>
-                      <path d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <h3 className="font-heading font-semibold text-lg mb-2">Scaling Chiller</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                    Efisiensi +30% setelah treatment. Chemical import premium.
-                  </p>
-                  <div className="flex items-center gap-2">
-                    <div className="h-1 flex-1 rounded-full bg-surface-3 overflow-hidden">
-                      <div className="h-full w-[85%] rounded-full bg-gradient-to-r from-accent to-accent-dim" />
-                    </div>
-                    <span className="text-xs text-accent font-medium">85%</span>
-                  </div>
-                  <p className="text-[10px] text-text-muted mt-1">Efisiensi recovery</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Scroll indicator */}
@@ -166,9 +105,9 @@ export default function Home() {
       </section>
 
       {/* Stats bar */}
-      <section className="border-y border-white/[0.06] bg-surface-1/50">
+      <section className="border-y border-black/[0.06] bg-surface-1/50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/[0.06]">
+          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-black/[0.06]">
             {stats.map((stat, i) => (
               <div key={i} className="reveal py-10 px-6 text-center">
                 <p className="font-heading text-3xl md:text-4xl font-bold gradient-text mb-1">{stat.value}</p>
@@ -200,18 +139,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
             {services.map((service, i) => (
-              <TiltCard key={i}>
-                <div className="reveal group relative rounded-2xl border border-white/[0.06] bg-surface-1 p-8 h-full hover:border-white/[0.12] transition-colors">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent/20 transition-colors">
-                      {service.icon}
-                    </div>
-                    <h3 className="font-heading text-xl font-semibold mb-3">{service.title}</h3>
-                    <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
+              <div key={i} className="reveal group relative rounded-2xl border border-black/[0.06] bg-surface-1 p-8 h-full hover:border-black/[0.12] transition-colors">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:bg-accent/20 transition-colors">
+                    {service.icon}
                   </div>
+                  <h3 className="font-heading text-xl font-semibold mb-3">{service.title}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">{service.desc}</p>
                 </div>
-              </TiltCard>
+              </div>
             ))}
           </div>
         </div>
@@ -250,9 +187,9 @@ export default function Home() {
             </div>
 
             {/* Visual side */}
-            <div className="reveal-right relative" style={{ perspective: "1000px" }}>
+            <div className="reveal-right relative">
               <div className="relative">
-                <div className="w-full aspect-square rounded-3xl border border-white/[0.06] bg-surface-2 overflow-hidden relative">
+                <div className="w-full aspect-square rounded-3xl border border-black/[0.06] bg-surface-2 overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-warm/5" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">

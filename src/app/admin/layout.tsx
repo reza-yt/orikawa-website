@@ -63,7 +63,7 @@ export default function AdminLayout({
             <p className="text-text-muted text-xs tracking-[0.2em] uppercase mt-1">Admin Panel</p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.06] bg-surface-1 p-8">
+          <div className="rounded-2xl border border-black/[0.06] bg-surface-1 p-8">
             {error && (
               <div className="mb-6 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
                 {error}
@@ -79,7 +79,7 @@ export default function AdminLayout({
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
+                  className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
                   placeholder="admin"
                   required
                   autoFocus
@@ -93,7 +93,7 @@ export default function AdminLayout({
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
+                  className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
                   placeholder="••••••••"
                   required
                 />
@@ -128,9 +128,9 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-surface flex">
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-surface-1 border-r border-white/[0.06] flex flex-col transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-surface-1 border-r border-black/[0.06] flex flex-col transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
         {/* Logo */}
-        <div className="h-16 flex items-center px-6 border-b border-white/[0.06]">
+        <div className="h-16 flex items-center px-6 border-b border-black/[0.06]">
           <Link href="/admin/dashboard">
             <span className="font-heading font-bold text-lg">
               ORI<span className="text-accent">KAWA</span>
@@ -159,7 +159,7 @@ export default function AdminLayout({
         </nav>
 
         {/* Bottom */}
-        <div className="p-3 border-t border-white/[0.06]">
+        <div className="p-3 border-t border-black/[0.06]">
           <Link
             href="/"
             className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm text-text-secondary hover:text-text-primary hover:bg-surface-2 transition-colors"
@@ -191,7 +191,7 @@ export default function AdminLayout({
       {/* Main */}
       <div className="flex-1 lg:ml-64">
         {/* Topbar */}
-        <header className="sticky top-0 z-20 h-16 bg-surface/80 backdrop-blur-xl border-b border-white/[0.06] flex items-center justify-between px-6">
+        <header className="sticky top-0 z-20 h-16 bg-surface/80 backdrop-blur-xl border-b border-black/[0.06] flex items-center justify-between px-6">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="lg:hidden text-text-secondary hover:text-text-primary"

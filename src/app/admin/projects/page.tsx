@@ -72,31 +72,31 @@ export default function ProjectsPage() {
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-8">
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-black/[0.06] bg-surface-1 p-6 mb-8">
           <h2 className="font-heading font-semibold mb-5">
             {editingId ? "Edit" : "Tambah"} Project
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Judul Project</label>
-              <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
+              <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Klien</label>
-              <input type="text" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+              <input type="text" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Lokasi</label>
-              <input type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+              <input type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Tanggal</label>
-              <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+              <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
           </div>
           <div className="mt-4">
             <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Deskripsi</label>
-            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
           </div>
           <div className="mt-4">
             <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Foto Project</label>
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
             {form.images.length > 0 && (
               <div className="flex gap-2 flex-wrap mt-3">
                 {form.images.map((img, i) => (
-                  <img key={i} src={img} alt="" className="w-20 h-20 object-cover rounded-lg border border-white/[0.06]" />
+                  <img key={i} src={img} alt="" className="w-20 h-20 object-cover rounded-lg border border-black/[0.06]" />
                 ))}
               </div>
             )}
@@ -123,7 +123,7 @@ export default function ProjectsPage() {
       ) : (
         <div className="space-y-4">
           {projects.map((project) => (
-            <div key={project.id} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 hover:border-white/[0.12] transition-colors">
+            <div key={project.id} className="rounded-2xl border border-black/[0.06] bg-surface-1 p-6 hover:border-black/[0.12] transition-colors">
               <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                 <div className="flex-1">
                   <h3 className="font-heading font-semibold mb-1">{project.title}</h3>
@@ -136,10 +136,10 @@ export default function ProjectsPage() {
                   {project.images?.length > 0 && (
                     <div className="flex gap-2 mt-3">
                       {project.images.slice(0, 4).map((img: string, i: number) => (
-                        <img key={i} src={img} alt="" className="w-16 h-16 object-cover rounded-lg border border-white/[0.06]" />
+                        <img key={i} src={img} alt="" className="w-16 h-16 object-cover rounded-lg border border-black/[0.06]" />
                       ))}
                       {project.images.length > 4 && (
-                        <div className="w-16 h-16 rounded-lg border border-white/[0.06] bg-surface-2 flex items-center justify-center text-text-muted text-xs">
+                        <div className="w-16 h-16 rounded-lg border border-black/[0.06] bg-surface-2 flex items-center justify-center text-text-muted text-xs">
                           +{project.images.length - 4}
                         </div>
                       )}

@@ -18,7 +18,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -58,7 +58,7 @@ export default function ContactPage() {
                         type="text"
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
+                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
                         placeholder="Nama Anda"
                         required
                       />
@@ -69,7 +69,7 @@ export default function ContactPage() {
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
+                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
                         placeholder="email@domain.com"
                       />
                     </div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                         type="tel"
                         value={form.phone}
                         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
+                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted"
                         placeholder="+62 812-xxxx-xxxx"
                         required
                       />
@@ -91,7 +91,7 @@ export default function ContactPage() {
                       <select
                         value={form.subject}
                         onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none"
+                        className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none"
                       >
                         <option value="">Pilih layanan...</option>
                         <option value="scaling">Scaling Chiller</option>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                     <textarea
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted h-32 resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted h-32 resize-none"
                       placeholder="Ceritakan kebutuhan Anda..."
                       required
                     />
@@ -127,7 +127,7 @@ export default function ContactPage() {
                 { icon: "✉️", label: "Email", value: "info@orikawa.id" },
                 { icon: "⏰", label: "Jam Kerja", value: "Senin - Sabtu: 08:00 - 17:00" },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 p-4 rounded-xl border border-white/[0.06] bg-surface-1">
+                <div key={i} className="flex items-start gap-4 p-4 rounded-xl border border-black/[0.06] bg-surface-1">
                   <span className="text-xl mt-0.5">{item.icon}</span>
                   <div>
                     <p className="text-xs text-text-muted tracking-wide uppercase mb-1">{item.label}</p>

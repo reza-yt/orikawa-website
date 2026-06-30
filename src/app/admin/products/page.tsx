@@ -79,18 +79,18 @@ export default function ProductsPage() {
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-8">
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-black/[0.06] bg-surface-1 p-6 mb-8">
           <h2 className="font-heading font-semibold mb-5">
             {editingId ? "Edit" : "Tambah"} Produk
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Nama Produk</label>
-              <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
+              <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Kategori</label>
-              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none">
+              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none">
                 <option value="descaler">Descaler</option>
                 <option value="rust_remover">Rust Remover</option>
                 <option value="cleaning_agent">Cleaning Agent</option>
@@ -99,21 +99,21 @@ export default function ProductsPage() {
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Harga (Rp)</label>
-              <input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+              <input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Stok</label>
-              <input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+              <input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
           </div>
           <div className="mt-4">
             <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Deskripsi</label>
-            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
           </div>
           <div className="mt-4">
             <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Gambar Produk</label>
             <input type="file" accept="image/*" onChange={handleImageUpload} className="text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-accent/10 file:text-accent hover:file:bg-accent/20 file:cursor-pointer" />
-            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded-xl mt-3 border border-white/[0.06]" />}
+            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded-xl mt-3 border border-black/[0.06]" />}
           </div>
           <div className="mt-6 flex gap-3">
             <button type="submit" className="btn-primary text-sm !px-6">{editingId ? "Update" : "Simpan"}</button>
@@ -129,7 +129,7 @@ export default function ProductsPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.map((product) => (
-            <div key={product.id} className="group rounded-2xl border border-white/[0.06] bg-surface-1 overflow-hidden hover:border-white/[0.12] transition-all duration-300">
+            <div key={product.id} className="group rounded-2xl border border-black/[0.06] bg-surface-1 overflow-hidden hover:border-black/[0.12] transition-all duration-300">
               {product.image && (
                 <div className="relative h-44 overflow-hidden">
                   <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -144,7 +144,7 @@ export default function ProductsPage() {
                   <span className="font-heading text-sm font-bold text-accent">Rp {(product.price || 0).toLocaleString("id-ID")}</span>
                   <span className="text-text-muted text-xs">Stok: {product.stock || 0}</span>
                 </div>
-                <div className="flex gap-3 pt-3 border-t border-white/[0.06]">
+                <div className="flex gap-3 pt-3 border-t border-black/[0.06]">
                   <button onClick={() => handleEdit(product)} className="text-xs text-text-secondary hover:text-accent transition-colors">Edit</button>
                   <button onClick={() => handleDelete(product.id)} className="text-xs text-text-secondary hover:text-red-400 transition-colors">Hapus</button>
                 </div>

@@ -4,7 +4,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -46,7 +46,7 @@ export default function AboutPage() {
                 { title: "Peralatan Modern", desc: "Dilengkapi peralatan cleaning terbaru dan terkalibrasi" },
                 { title: "Harga Kompetitif", desc: "Penawaran harga terbaik dengan kualitas layanan prima" },
               ].map((item, i) => (
-                <div key={i} className="reveal flex gap-4 p-5 rounded-xl border border-white/[0.06] bg-surface-1 hover:border-white/[0.12] transition-colors group">
+                <div key={i} className="reveal flex gap-4 p-5 rounded-xl border border-black/[0.06] bg-surface-1 hover:border-black/[0.12] transition-colors group">
                   <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
                     <span className="text-accent font-heading font-bold text-sm">{String(i + 1).padStart(2, "0")}</span>
                   </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-20 bg-surface-1 border-y border-white/[0.06]">
+      <section className="py-20 bg-surface-1 border-y border-black/[0.06]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[

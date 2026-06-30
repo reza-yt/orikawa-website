@@ -77,7 +77,7 @@ export default function Dashboard() {
             <Link
               key={card.label}
               href={card.href}
-              className="group relative rounded-2xl border border-white/[0.06] bg-surface-1 p-6 hover:border-white/[0.12] transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl border border-black/[0.06] bg-surface-1 p-6 hover:border-black/[0.12] transition-all duration-300 overflow-hidden"
             >
               <div className={`absolute top-0 right-0 w-32 h-32 ${c.glow} rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity`} />
               <div className="relative z-10">
@@ -98,7 +98,7 @@ export default function Dashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6">
+      <div className="rounded-2xl border border-black/[0.06] bg-surface-1 p-6">
         <h2 className="font-heading font-semibold mb-4">Quick Actions</h2>
         <div className="flex flex-wrap gap-3">
           {[

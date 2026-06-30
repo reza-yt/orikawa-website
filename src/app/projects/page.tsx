@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -40,7 +40,7 @@ export default function ProjectsPage() {
           ) : (
             <div className="space-y-6 stagger-children">
               {projects.map((project) => (
-                <div key={project.id} className="reveal rounded-2xl border border-white/[0.06] bg-surface-1 overflow-hidden hover:border-white/[0.12] transition-colors">
+                <div key={project.id} className="reveal rounded-2xl border border-black/[0.06] bg-surface-1 overflow-hidden hover:border-black/[0.12] transition-colors">
                   {project.images?.length > 0 && (
                     <div className="flex overflow-x-auto gap-3 p-4 bg-surface-2 scrollbar-hide">
                       {project.images.map((img: string, i: number) => (
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-surface-1 border-y border-white/[0.06]">
+      <section className="py-20 bg-surface-1 border-y border-black/[0.06]">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="reveal font-heading text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Ingin Project Seperti Ini?

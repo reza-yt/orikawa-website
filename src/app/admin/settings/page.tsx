@@ -25,7 +25,7 @@ export default function SettingsPage() {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-6">
+        <div className="rounded-2xl border border-black/[0.06] bg-surface-1 p-6 mb-6">
           <h2 className="font-heading font-semibold mb-5">Informasi Umum</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -34,7 +34,7 @@ export default function SettingsPage() {
                 type="text"
                 value={config.site.name}
                 onChange={(e) => setConfig({ ...config, site: { ...config.site, name: e.target.value } })}
-                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
               />
             </div>
             <div>
@@ -43,7 +43,7 @@ export default function SettingsPage() {
                 type="email"
                 value={config.site.email}
                 onChange={(e) => setConfig({ ...config, site: { ...config.site, email: e.target.value } })}
-                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
               />
             </div>
             <div>
@@ -52,7 +52,7 @@ export default function SettingsPage() {
                 type="text"
                 value={config.site.whatsapp}
                 onChange={(e) => setConfig({ ...config, site: { ...config.site, whatsapp: e.target.value } })}
-                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
               />
             </div>
             <div>
@@ -61,7 +61,7 @@ export default function SettingsPage() {
                 type="text"
                 value={config.site.address}
                 onChange={(e) => setConfig({ ...config, site: { ...config.site, address: e.target.value } })}
-                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors"
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function SettingsPage() {
             <textarea
               value={config.site.description}
               onChange={(e) => setConfig({ ...config, site: { ...config.site, description: e.target.value } })}
-              className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none"
+              className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none"
             />
           </div>
         </div>

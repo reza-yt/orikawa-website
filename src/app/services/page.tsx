@@ -49,7 +49,7 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.07) 1px, transparent 1px)",
           backgroundSize: "80px 80px",
         }} />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -69,7 +69,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="space-y-6 stagger-children">
             {services.map((service, i) => (
-              <div key={i} className="reveal group rounded-2xl border border-white/[0.06] bg-surface-1 p-8 lg:p-10 hover:border-white/[0.12] transition-all duration-300">
+              <div key={i} className="reveal group rounded-2xl border border-black/[0.06] bg-surface-1 p-8 lg:p-10 hover:border-black/[0.12] transition-all duration-300">
                 <div className="flex flex-col lg:flex-row gap-8">
                   <div className="flex-shrink-0">
                     <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent/20 transition-colors">
@@ -96,7 +96,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-surface-1 border-y border-white/[0.06]">
+      <section className="py-20 bg-surface-1 border-y border-black/[0.06]">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="reveal font-heading text-3xl md:text-4xl font-bold tracking-tight mb-4">
             Butuh Konsultasi?

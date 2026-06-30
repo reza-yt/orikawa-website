@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06]">
+    <footer className="relative border-t border-black/[0.06]">
       {/* Ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-black/[0.06] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-muted text-xs">
             © {new Date().getFullYear()} Orikawa Indonesia. All rights reserved.
           </p>
