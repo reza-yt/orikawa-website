@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useConfig } from "@/lib/useConfig";
 
 export default function ServicesPage() {
+  const { config } = useConfig();
+
   const services = [
     {
       title: "Scaling Chiller",
@@ -105,7 +110,7 @@ export default function ServicesPage() {
             Hubungi kami untuk survey dan penawaran gratis
           </p>
           <Link href="/contact" className="reveal btn-primary inline-block">
-            Hubungi Kami
+            {config.hero.ctaText}
           </Link>
         </div>
       </section>

@@ -3,15 +3,41 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
+interface Category {
+  slug: string;
+  name: string;
+}
+
 export default function PostsPage() {
   const searchParams = useSearchParams();
   const [posts, setPosts] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ title: "", content: "", image: "", category: "info" });
   const [editingId, setEditingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/posts").then((r) => r.json()).then(setPosts);
+    fetch("/api/config")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.categories && data.categories.length > 0) {
+          setCategories(data.categories);
+        } else {
+          setCategories([
+            { slug: "info", name: "Informasi" },
+            { slug: "tips", name: "Tips & Trik" },
+            { slug: "news", name: "Berita" },
+          ]);
+        }
+      })
+      .catch(() =>
+        setCategories([
+          { slug: "info", name: "Informasi" },
+          { slug: "tips", name: "Tips & Trik" },
+          { slug: "news", name: "Berita" },
+        ])
+      );
     if (searchParams.get("new")) setShowForm(true);
   }, [searchParams]);
 
@@ -91,9 +117,9 @@ export default function PostsPage() {
             <div>
               <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Kategori</label>
               <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-black/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none">
-                <option value="info">Informasi</option>
-                <option value="tips">Tips & Trik</option>
-                <option value="news">Berita</option>
+                {categories.map((cat) => (
+                  <option key={cat.slug} value={cat.slug}>{cat.name}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -133,7 +159,9 @@ export default function PostsPage() {
                   </td>
                   <td className="px-6 py-4 text-sm font-medium">{post.title}</td>
                   <td className="px-6 py-4">
-                    <span className="inline-block px-2.5 py-1 bg-accent/10 text-accent text-xs rounded-lg font-medium">{post.category}</span>
+                    <span className="inline-block px-2.5 py-1 bg-accent/10 text-accent text-xs rounded-lg font-medium">
+                      {categories.find((c) => c.slug === post.category)?.name || post.category}
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-text-secondary">
                     {new Date(post.createdAt).toLocaleDateString("id-ID")}

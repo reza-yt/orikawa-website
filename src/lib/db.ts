@@ -112,7 +112,30 @@ export async function getConfig() {
   // Seed default config
   const defaultConfig = {
     admin: { username: 'admin', password: 'orikawa2024' },
-    site: { name: 'Orikawa Indonesia', description: 'Specialist Scaling Chiller & Chemical Cleaning' }
+    site: {
+      name: 'Orikawa Indonesia',
+      tagline: 'Indonesia',
+      description: 'Specialist Scaling Chiller & Chemical Cleaning untuk sistem HVAC industri.',
+      whatsapp: '6281234567890',
+      email: 'info@orikawa.id',
+      address: 'Jakarta, Indonesia',
+    },
+    hero: {
+      badge: 'HVAC Specialist · Indonesia',
+      title: 'Scaling Chiller',
+      subtitle: '& Chemical Cleaning',
+      description: 'Jasa profesional pembersihan kerak, karat, dan endapan pada sistem HVAC industri. Efisiensi optimal, harga kompetitif.',
+      ctaText: 'Hubungi Kami',
+      ctaSecondary: 'Lihat Layanan',
+    },
+    footer: {
+      copyright: '© Orikawa Indonesia. All rights reserved.',
+    },
+    categories: [
+      { slug: 'info', name: 'Informasi' },
+      { slug: 'tips', name: 'Tips & Trik' },
+      { slug: 'news', name: 'Berita' },
+    ],
   };
   await setJSON('config', defaultConfig);
   return defaultConfig;

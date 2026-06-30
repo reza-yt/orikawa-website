@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useConfig } from "@/lib/useConfig";
 
 export default function Home() {
+  const { config } = useConfig();
+
   const services = [
     {
       icon: (
@@ -49,31 +52,31 @@ export default function Home() {
             {/* Badge */}
             <div className="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow" />
-              <span className="text-xs text-text-secondary tracking-wide">HVAC Specialist · Indonesia</span>
+              <span className="text-xs text-text-secondary tracking-wide">{config.hero.badge}</span>
             </div>
 
             {/* Heading */}
             <h1 className="reveal font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-5">
-              Scaling{" "}
+              {config.hero.title}{" "}
               <span className="text-accent">Chiller</span>
               <br />
               <span className="text-text-secondary text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light">
-                & Chemical Cleaning
+                {config.hero.subtitle}
               </span>
             </h1>
 
             {/* Sub */}
             <p className="reveal text-text-secondary text-base sm:text-lg max-w-xl leading-relaxed mb-8">
-              Jasa profesional pembersihan kerak, karat, dan endapan pada sistem HVAC industri. Efisiensi optimal, harga kompetitif.
+              {config.hero.description}
             </p>
 
             {/* CTAs */}
             <div className="reveal flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary">
-                Hubungi Kami
+                {config.hero.ctaText}
               </Link>
               <Link href="/services" className="btn-outline">
-                Lihat Layanan
+                {config.hero.ctaSecondary}
               </Link>
             </div>
           </div>
@@ -159,16 +162,21 @@ export default function Home() {
         <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
           <p className="reveal text-accent text-xs tracking-[0.15em] uppercase font-medium mb-2">Mulai Sekarang</p>
           <h2 className="reveal font-heading text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Butuh Jasa Scaling Chiller?
+            Butuh Jasa {config.hero.title}?
           </h2>
           <p className="reveal text-text-secondary mb-8 max-w-md mx-auto">
             Hubungi kami untuk konsultasi gratis dan penawaran terbaik.
           </p>
           <div className="reveal flex flex-wrap gap-3 justify-center">
             <Link href="/contact" className="btn-primary">
-              Hubungi Kami
+              {config.hero.ctaText}
             </Link>
-            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" className="btn-outline">
+            <a
+              href={`https://wa.me/${config.site.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
               Chat WhatsApp
             </a>
           </div>

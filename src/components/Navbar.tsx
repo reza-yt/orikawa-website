@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useConfig } from "@/lib/useConfig";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { config } = useConfig();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -42,7 +45,7 @@ export default function Navbar() {
               ORI<span className="text-accent">KAWA</span>
             </h1>
             <p className="text-[9px] tracking-[0.2em] text-text-muted uppercase -mt-0.5">
-              Indonesia
+              {config.site.tagline}
             </p>
           </Link>
 
@@ -68,7 +71,7 @@ export default function Navbar() {
               href="/contact"
               className="btn-primary ml-3 !py-2 !px-5 !text-sm"
             >
-              Hubungi Kami
+              {config.hero.ctaText}
             </Link>
           </div>
 
@@ -123,7 +126,7 @@ export default function Navbar() {
             href="/contact"
             className="block btn-primary text-center text-sm mt-2"
           >
-            Hubungi Kami
+            {config.hero.ctaText}
           </Link>
         </div>
       </div>

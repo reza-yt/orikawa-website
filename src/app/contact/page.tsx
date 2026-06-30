@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { useConfig } from "@/lib/useConfig";
 
 export default function ContactPage() {
+  const { config } = useConfig();
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const waUrl = `https://wa.me/6281234567890?text=Halo Orikawa Indonesia, saya ${form.name}. ${form.message}`;
+    const waUrl = `https://wa.me/${config.site.whatsapp}?text=Halo ${config.site.name}, saya ${form.name}. ${form.message}`;
     window.open(waUrl, "_blank");
     setSent(true);
   };
@@ -122,9 +124,9 @@ export default function ContactPage() {
             <div className="lg:col-span-2 space-y-6 reveal-right">
               <h3 className="font-heading text-xl font-semibold mb-6">Informasi Kontak</h3>
               {[
-                { icon: "📍", label: "Alamat", value: "Jakarta, Indonesia" },
-                { icon: "📞", label: "WhatsApp", value: "+62 812-xxxx-xxxx" },
-                { icon: "✉️", label: "Email", value: "info@orikawa.id" },
+                { icon: "📍", label: "Alamat", value: config.site.address },
+                { icon: "📞", label: "WhatsApp", value: `+${config.site.whatsapp}` },
+                { icon: "✉️", label: "Email", value: config.site.email },
                 { icon: "⏰", label: "Jam Kerja", value: "Senin - Sabtu: 08:00 - 17:00" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-4 p-4 rounded-xl border border-black/[0.06] bg-surface-1">
@@ -141,7 +143,7 @@ export default function ContactPage() {
                 <h4 className="font-heading font-semibold text-accent mb-2">Layanan Darurat?</h4>
                 <p className="text-text-secondary text-sm mb-4">Hubungi kami untuk kebutuhan mendesak di luar jam kerja</p>
                 <a
-                  href="https://wa.me/6281234567890"
+                  href={`https://wa.me/${config.site.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent-dim transition-colors"

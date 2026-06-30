@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useConfig } from "@/lib/useConfig";
 
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
   const [exiting, setExiting] = useState(false);
+  const { config } = useConfig();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,7 +25,7 @@ export default function Preloader() {
           ORI<span className="text-accent">KAWA</span>
         </h1>
         <p className="text-xs tracking-[0.3em] text-text-secondary mt-2 uppercase">
-          Indonesia
+          {config.site.tagline}
         </p>
       </div>
       <div className="preloader-bar">
