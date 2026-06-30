@@ -24,9 +24,7 @@ export default function ProjectsPage() {
       const data = await res.json();
       if (editingId) { setProjects(projects.map((p) => (p.id === editingId ? data : p))); }
       else { setProjects([...projects, data]); }
-      setForm({ title: "", description: "", client: "", location: "", date: "", images: [] });
-      setShowForm(false);
-      setEditingId(null);
+      resetForm();
     }
   };
 
@@ -52,54 +50,111 @@ export default function ProjectsPage() {
     setForm({ ...form, images: [...form.images, data.url] });
   };
 
+  const resetForm = () => {
+    setForm({ title: "", description: "", client: "", location: "", date: "", images: [] });
+    setShowForm(false);
+    setEditingId(null);
+  };
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Kelola Project</h1>
-        <button onClick={() => { setShowForm(!showForm); setEditingId(null); setForm({ title: "", description: "", client: "", location: "", date: "", images: [] }); }} className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">+ Project Baru</button>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div>
+          <h1 className="font-heading text-2xl font-bold tracking-tight">Kelola Project</h1>
+          <p className="text-text-secondary text-sm mt-1">{projects.length} project</p>
+        </div>
+        <button
+          onClick={() => { setShowForm(!showForm); setEditingId(null); setForm({ title: "", description: "", client: "", location: "", date: "", images: [] }); }}
+          className="btn-primary text-sm !px-5 !py-2.5"
+        >
+          + Project Baru
+        </button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-6">
-          <h2 className="text-lg font-semibold mb-4">{editingId ? "Edit" : "Tambah"} Project</h2>
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-8">
+          <h2 className="font-heading font-semibold mb-5">
+            {editingId ? "Edit" : "Tambah"} Project
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div><label className="block text-sm font-medium mb-2">Judul Project</label><input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full px-3 py-2 border rounded-lg" required /></div>
-            <div><label className="block text-sm font-medium mb-2">Klien</label><input type="text" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div>
-            <div><label className="block text-sm font-medium mb-2">Lokasi</label><input type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div>
-            <div><label className="block text-sm font-medium mb-2">Tanggal</label><input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="w-full px-3 py-2 border rounded-lg" /></div>
+            <div>
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Judul Project</label>
+              <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
+            </div>
+            <div>
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Klien</label>
+              <input type="text" value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+            </div>
+            <div>
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Lokasi</label>
+              <input type="text" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+            </div>
+            <div>
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Tanggal</label>
+              <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
+            </div>
           </div>
-          <div className="mt-4"><label className="block text-sm font-medium mb-2">Deskripsi</label><textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-3 py-2 border rounded-lg h-24" required /></div>
           <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Foto Project</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-2" />
-            <div className="flex gap-2 flex-wrap">{form.images.map((img, i) => (<img key={i} src={img} alt="" className="w-24 h-24 object-cover rounded" />))}</div>
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Deskripsi</label>
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
           </div>
-          <div className="mt-4 flex space-x-2">
-            <button type="submit" className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">{editingId ? "Update" : "Simpan"}</button>
-            <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Batal</button>
+          <div className="mt-4">
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Foto Project</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-accent/10 file:text-accent hover:file:bg-accent/20 file:cursor-pointer" />
+            {form.images.length > 0 && (
+              <div className="flex gap-2 flex-wrap mt-3">
+                {form.images.map((img, i) => (
+                  <img key={i} src={img} alt="" className="w-20 h-20 object-cover rounded-lg border border-white/[0.06]" />
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="mt-6 flex gap-3">
+            <button type="submit" className="btn-primary text-sm !px-6">{editingId ? "Update" : "Simpan"}</button>
+            <button type="button" onClick={resetForm} className="btn-outline text-sm !px-6">Batal</button>
           </div>
         </form>
       )}
 
-      <div className="space-y-4">
-        {projects.map((project) => (
-          <div key={project.id} className="bg-white p-6 rounded-lg shadow">
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-semibold text-lg">{project.title}</h3>
-                <p className="text-sm text-gray-500">{project.client} • {project.location} • {project.date}</p>
-                <p className="text-gray-600 mt-2">{project.description}</p>
-                {project.images?.length > 0 && (<div className="flex gap-2 mt-3">{project.images.slice(0, 3).map((img: string, i: number) => (<img key={i} src={img} alt="" className="w-20 h-20 object-cover rounded" />))}</div>)}
-              </div>
-              <div className="flex space-x-2">
-                <button onClick={() => handleEdit(project)} className="text-blue-600 hover:underline text-sm">Edit</button>
-                <button onClick={() => handleDelete(project.id)} className="text-red-600 hover:underline text-sm">Hapus</button>
+      {projects.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-text-muted text-sm">Belum ada project</p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {projects.map((project) => (
+            <div key={project.id} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 hover:border-white/[0.12] transition-colors">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+                <div className="flex-1">
+                  <h3 className="font-heading font-semibold mb-1">{project.title}</h3>
+                  <div className="flex flex-wrap gap-3 text-xs text-text-muted mb-3">
+                    {project.client && <span className="flex items-center gap-1"><span className="text-accent">→</span> {project.client}</span>}
+                    {project.location && <span className="flex items-center gap-1"><span className="text-accent">→</span> {project.location}</span>}
+                    {project.date && <span className="flex items-center gap-1"><span className="text-accent">→</span> {project.date}</span>}
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{project.description}</p>
+                  {project.images?.length > 0 && (
+                    <div className="flex gap-2 mt-3">
+                      {project.images.slice(0, 4).map((img: string, i: number) => (
+                        <img key={i} src={img} alt="" className="w-16 h-16 object-cover rounded-lg border border-white/[0.06]" />
+                      ))}
+                      {project.images.length > 4 && (
+                        <div className="w-16 h-16 rounded-lg border border-white/[0.06] bg-surface-2 flex items-center justify-center text-text-muted text-xs">
+                          +{project.images.length - 4}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={() => handleEdit(project)} className="text-sm text-text-secondary hover:text-accent transition-colors">Edit</button>
+                  <button onClick={() => handleDelete(project.id)} className="text-sm text-text-secondary hover:text-red-400 transition-colors">Hapus</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      {projects.length === 0 && <p className="text-center text-gray-500 mt-8">Belum ada project</p>}
+          ))}
+        </div>
+      )}
     </div>
   );
 }

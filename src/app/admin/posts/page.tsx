@@ -31,9 +31,7 @@ export default function PostsPage() {
       } else {
         setPosts([...posts, data]);
       }
-      setForm({ title: "", content: "", image: "", category: "info" });
-      setShowForm(false);
-      setEditingId(null);
+      resetForm();
     }
   };
 
@@ -59,39 +57,40 @@ export default function PostsPage() {
     setForm({ ...form, image: data.url });
   };
 
+  const resetForm = () => {
+    setForm({ title: "", content: "", image: "", category: "info" });
+    setShowForm(false);
+    setEditingId(null);
+  };
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Kelola Postingan</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div>
+          <h1 className="font-heading text-2xl font-bold tracking-tight">Kelola Postingan</h1>
+          <p className="text-text-secondary text-sm mt-1">{posts.length} postingan</p>
+        </div>
         <button
           onClick={() => { setShowForm(!showForm); setEditingId(null); setForm({ title: "", content: "", image: "", category: "info" }); }}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="btn-primary text-sm !px-5 !py-2.5"
         >
           + Postingan Baru
         </button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-6">
-          <h2 className="text-lg font-semibold mb-4">{editingId ? "Edit" : "Tambah"} Postingan</h2>
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-8">
+          <h2 className="font-heading font-semibold mb-5">
+            {editingId ? "Edit" : "Tambah"} Postingan
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Judul</label>
-              <input
-                type="text"
-                value={form.title}
-                onChange={(e) => setForm({ ...form, title: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg"
-                required
-              />
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Judul</label>
+              <input type="text" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted" required />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Kategori</label>
-              <select
-                value={form.category}
-                onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg"
-              >
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Kategori</label>
+              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none">
                 <option value="info">Informasi</option>
                 <option value="tips">Tips & Trik</option>
                 <option value="news">Berita</option>
@@ -99,63 +98,62 @@ export default function PostsPage() {
             </div>
           </div>
           <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Konten</label>
-            <textarea
-              value={form.content}
-              onChange={(e) => setForm({ ...form, content: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg h-32"
-              required
-            />
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Konten</label>
+            <textarea value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors placeholder:text-text-muted h-32 resize-none" required />
           </div>
           <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Gambar</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-2" />
-            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded" />}
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Gambar</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-accent/10 file:text-accent hover:file:bg-accent/20 file:cursor-pointer" />
+            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded-xl mt-3 border border-white/[0.06]" />}
           </div>
-          <div className="mt-4 flex space-x-2">
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-              {editingId ? "Update" : "Simpan"}
-            </button>
-            <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
-              Batal
-            </button>
+          <div className="mt-6 flex gap-3">
+            <button type="submit" className="btn-primary text-sm !px-6">{editingId ? "Update" : "Simpan"}</button>
+            <button type="button" onClick={resetForm} className="btn-outline text-sm !px-6">Batal</button>
           </div>
         </form>
       )}
 
-      <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Gambar</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Judul</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kategori</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {posts.map((post) => (
-              <tr key={post.id}>
-                <td className="px-6 py-4">
-                  {post.image ? <img src={post.image} alt="" className="w-16 h-16 object-cover rounded" /> : "-"}
-                </td>
-                <td className="px-6 py-4 font-medium">{post.title}</td>
-                <td className="px-6 py-4">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-sm">{post.category}</span>
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-500">
-                  {new Date(post.createdAt).toLocaleDateString("id-ID")}
-                </td>
-                <td className="px-6 py-4 space-x-2">
-                  <button onClick={() => handleEdit(post)} className="text-blue-600 hover:underline text-sm">Edit</button>
-                  <button onClick={() => handleDelete(post.id)} className="text-red-600 hover:underline text-sm">Hapus</button>
-                </td>
+      <div className="rounded-2xl border border-white/[0.06] bg-surface-1 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-white/[0.06]">
+                <th className="px-6 py-4 text-left text-[10px] text-text-muted tracking-[0.15em] uppercase font-medium">Gambar</th>
+                <th className="px-6 py-4 text-left text-[10px] text-text-muted tracking-[0.15em] uppercase font-medium">Judul</th>
+                <th className="px-6 py-4 text-left text-[10px] text-text-muted tracking-[0.15em] uppercase font-medium">Kategori</th>
+                <th className="px-6 py-4 text-left text-[10px] text-text-muted tracking-[0.15em] uppercase font-medium">Tanggal</th>
+                <th className="px-6 py-4 text-left text-[10px] text-text-muted tracking-[0.15em] uppercase font-medium">Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        {posts.length === 0 && <p className="p-6 text-center text-gray-500">Belum ada postingan</p>}
+            </thead>
+            <tbody className="divide-y divide-white/[0.04]">
+              {posts.map((post) => (
+                <tr key={post.id} className="hover:bg-surface-2/50 transition-colors">
+                  <td className="px-6 py-4">
+                    {post.image ? <img src={post.image} alt="" className="w-12 h-12 object-cover rounded-lg border border-white/[0.06]" /> : <span className="text-text-muted">—</span>}
+                  </td>
+                  <td className="px-6 py-4 text-sm font-medium">{post.title}</td>
+                  <td className="px-6 py-4">
+                    <span className="inline-block px-2.5 py-1 bg-accent/10 text-accent text-xs rounded-lg font-medium">{post.category}</span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-text-secondary">
+                    {new Date(post.createdAt).toLocaleDateString("id-ID")}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex gap-3">
+                      <button onClick={() => handleEdit(post)} className="text-sm text-text-secondary hover:text-accent transition-colors">Edit</button>
+                      <button onClick={() => handleDelete(post.id)} className="text-sm text-text-secondary hover:text-red-400 transition-colors">Hapus</button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {posts.length === 0 && (
+          <div className="py-16 text-center">
+            <p className="text-text-muted text-sm">Belum ada postingan</p>
+          </div>
+        )}
       </div>
     </div>
   );

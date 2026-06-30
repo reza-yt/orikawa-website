@@ -31,9 +31,7 @@ export default function ProductsPage() {
       } else {
         setProducts([...products, data]);
       }
-      setForm({ name: "", description: "", price: "", image: "", category: "descaler", stock: "0" });
-      setShowForm(false);
-      setEditingId(null);
+      resetForm();
     }
   };
 
@@ -59,29 +57,40 @@ export default function ProductsPage() {
     setForm({ ...form, image: data.url });
   };
 
+  const resetForm = () => {
+    setForm({ name: "", description: "", price: "", image: "", category: "descaler", stock: "0" });
+    setShowForm(false);
+    setEditingId(null);
+  };
+
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Kelola Produk</h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div>
+          <h1 className="font-heading text-2xl font-bold tracking-tight">Kelola Produk</h1>
+          <p className="text-text-secondary text-sm mt-1">{products.length} produk</p>
+        </div>
         <button
           onClick={() => { setShowForm(!showForm); setEditingId(null); setForm({ name: "", description: "", price: "", image: "", category: "descaler", stock: "0" }); }}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="btn-primary text-sm !px-5 !py-2.5"
         >
           + Produk Baru
         </button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow mb-6">
-          <h2 className="text-lg font-semibold mb-4">{editingId ? "Edit" : "Tambah"} Produk</h2>
+        <form onSubmit={handleSubmit} className="rounded-2xl border border-white/[0.06] bg-surface-1 p-6 mb-8">
+          <h2 className="font-heading font-semibold mb-5">
+            {editingId ? "Edit" : "Tambah"} Produk
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-2">Nama Produk</label>
-              <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 border rounded-lg" required />
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Nama Produk</label>
+              <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" required />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Kategori</label>
-              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-3 py-2 border rounded-lg">
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Kategori</label>
+              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors appearance-none">
                 <option value="descaler">Descaler</option>
                 <option value="rust_remover">Rust Remover</option>
                 <option value="cleaning_agent">Cleaning Agent</option>
@@ -89,49 +98,61 @@ export default function ProductsPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Harga (Rp)</label>
-              <input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Harga (Rp)</label>
+              <input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Stok</label>
-              <input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} className="w-full px-3 py-2 border rounded-lg" />
+              <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Stok</label>
+              <input type="number" value={form.stock} onChange={(e) => setForm({ ...form, stock: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors" />
             </div>
           </div>
           <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Deskripsi</label>
-            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-3 py-2 border rounded-lg h-24" required />
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Deskripsi</label>
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="w-full px-4 py-3 rounded-xl bg-surface-2 border border-white/[0.08] text-text-primary text-sm focus:outline-none focus:border-accent/50 transition-colors h-24 resize-none" required />
           </div>
           <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Gambar Produk</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} className="mb-2" />
-            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded" />}
+            <label className="block text-xs text-text-muted tracking-wide uppercase mb-2 font-medium">Gambar Produk</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} className="text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-accent/10 file:text-accent hover:file:bg-accent/20 file:cursor-pointer" />
+            {form.image && <img src={form.image} alt="Preview" className="w-32 h-32 object-cover rounded-xl mt-3 border border-white/[0.06]" />}
           </div>
-          <div className="mt-4 flex space-x-2">
-            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">{editingId ? "Update" : "Simpan"}</button>
-            <button type="button" onClick={() => { setShowForm(false); setEditingId(null); }} className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Batal</button>
+          <div className="mt-6 flex gap-3">
+            <button type="submit" className="btn-primary text-sm !px-6">{editingId ? "Update" : "Simpan"}</button>
+            <button type="button" onClick={resetForm} className="btn-outline text-sm !px-6">Batal</button>
           </div>
         </form>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg shadow overflow-hidden">
-            {product.image && <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />}
-            <div className="p-4">
-              <h3 className="font-semibold text-lg">{product.name}</h3>
-              <p className="text-sm text-gray-500 mb-2">{product.category}</p>
-              <p className="text-gray-600 text-sm mb-2 line-clamp-2">{product.description}</p>
-              <p className="text-green-600 font-bold">Rp {(product.price || 0).toLocaleString("id-ID")}</p>
-              <p className="text-sm text-gray-500">Stok: {product.stock || 0}</p>
-              <div className="mt-3 flex space-x-2">
-                <button onClick={() => handleEdit(product)} className="text-blue-600 hover:underline text-sm">Edit</button>
-                <button onClick={() => handleDelete(product.id)} className="text-red-600 hover:underline text-sm">Hapus</button>
+      {products.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-text-muted text-sm">Belum ada produk</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {products.map((product) => (
+            <div key={product.id} className="group rounded-2xl border border-white/[0.06] bg-surface-1 overflow-hidden hover:border-white/[0.12] transition-all duration-300">
+              {product.image && (
+                <div className="relative h-44 overflow-hidden">
+                  <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-surface-1/60 to-transparent" />
+                </div>
+              )}
+              <div className="p-5">
+                <span className="inline-block text-[10px] text-accent font-medium tracking-wide uppercase mb-1">{product.category}</span>
+                <h3 className="font-heading font-semibold text-sm mb-1">{product.name}</h3>
+                <p className="text-text-secondary text-xs line-clamp-2 mb-3">{product.description}</p>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-heading text-sm font-bold text-accent">Rp {(product.price || 0).toLocaleString("id-ID")}</span>
+                  <span className="text-text-muted text-xs">Stok: {product.stock || 0}</span>
+                </div>
+                <div className="flex gap-3 pt-3 border-t border-white/[0.06]">
+                  <button onClick={() => handleEdit(product)} className="text-xs text-text-secondary hover:text-accent transition-colors">Edit</button>
+                  <button onClick={() => handleDelete(product.id)} className="text-xs text-text-secondary hover:text-red-400 transition-colors">Hapus</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      {products.length === 0 && <p className="text-center text-gray-500 mt-8">Belum ada produk</p>}
+          ))}
+        </div>
+      )}
     </div>
   );
 }
